@@ -1,9 +1,17 @@
+import Header from "@/components/header/header.tsx";
+import './shadcn-ui.css'
+import {MainContent} from "@/components/main-content/main-content.tsx";
+import {Provider} from "react-redux";
+import {store} from "@/store/store.ts";
 
 function App() {
 
   return (
     <>
-
+        <Header/>
+        <Provider store={store}>
+            <MainContent/>
+        </Provider>
     </>
   )
 }
