@@ -1,0 +1,46 @@
+.hamburger {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: none;
+  padding: .4rem;
+  border-radius: .5rem;
+
+  &:hover {
+    filter: invert(20%);
+  }
+}
+
+.btn__hamb {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 4px;
+  background: white;
+  cursor: pointer;
+
+  div {
+    width: 100%;
+    height: 100%;
+  }
+
+  &:before, &:after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    background: white;
+  }
+
+  &:before {
+    top: -8px;
+  }
+
+  &:after {
+    top: 8px;
+  }
+}
