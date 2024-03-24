@@ -1,6 +1,6 @@
 import './post.scss'
 import {PostInfo} from "@/type/post-info.ts";
-import {AvatarUser} from "@/components/avatar-user/avatar-user.tsx";
+import {AvatarUserMini} from "@/components/avatar-user/avatar-user-mini.tsx";
 import {CommentsSvg} from "@/components/svg/comments-svg.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {useState} from "react";
@@ -15,7 +15,7 @@ export const Post = ({post}: { post: PostInfo }) => {
     return (
         <li className="post">
             <div className="post-title">
-                <AvatarUser userId={post.userId}/>
+                <AvatarUserMini userId={post.userId}/>
                 <h1 className="post-title__text">{post.title}</h1>
             </div>
             <div className="post__body">

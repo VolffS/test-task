@@ -33,6 +33,12 @@ header {
       flex-grow: 1;
       align-self: center;
       text-align: center;
+      &:hover {
+        filter: invert(15%);
+      }
+      &:active {
+        filter: invert(35%);
+      }
     }
 
     .nav {

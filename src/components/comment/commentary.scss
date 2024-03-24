@@ -25,12 +25,5 @@
 .comment__title {
   font-weight: bold;
   color: rgb(141, 211, 217);
-  &:hover {
-    filter: invert(20%);
-    cursor: pointer;
-  }
-  &:active {
-    filter: invert(35%);
-    cursor: pointer;
-  }
+
 }
