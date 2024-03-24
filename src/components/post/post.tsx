@@ -1,11 +1,11 @@
 import './post.scss'
-import {PostInfo} from "@/type/post-info.ts";
+import {IPost} from "@/type/i-post.ts";
 import {AvatarUserMini} from "@/components/avatar-user/avatar-user-mini.tsx";
 import {CommentsSvg} from "@/components/svg/comments-svg.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {useState} from "react";
 import {CommentsList} from "@/components/comment-list/comments-list.tsx";
-export const Post = ({post}: { post: PostInfo }) => {
+export const Post = ({post}: { post: IPost }) => {
     const [isShowComments, setIsShowComments] = useState<boolean>(false);
 
     const toggleShowComments = (): void => {

@@ -6,6 +6,9 @@ import {UserBody} from "@/components/user-body/user-body.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {HomeSvg} from "@/components/svg/home-svg.tsx";
 import {UserPosts} from "@/components/user-posts/user-posts.tsx";
+import {IDeferredLoader} from "@/type/i-deferred-loader.ts";
+import {useDeferredLoader} from "@/hooks/use-deferred-loader.ts";
+import {LoaderAllSpace} from "@/components/loader/loaderAllSpace.tsx";
 
 export const User = () => {
     const {state} = useLocation();
@@ -14,6 +17,7 @@ export const User = () => {
         isSuccess: isSuccessUser,
         error: ErrorUser
     } = useGetUserByUserIdQuery(state.userId);
+    const stateLoader: IDeferredLoader = useDeferredLoader()
 
     return (
         <main className="container">
@@ -22,18 +26,18 @@ export const User = () => {
                 <Button className="back-post">
                     <Link className="back-post__link" to={'/'}>
                         <HomeSvg/>
-                        Назад
+                        <p>Назад</p>
                     </Link>
                 </Button>
                 <div className="user">
-                    {isLoadingUser && <div></div>}
+                    {stateLoader.isLoader && <LoaderAllSpace/>}
+                    {!isLoadingUser && stateLoader.shutdownLoader()}
                     <AvatarUser/>
-                    {(!isLoadingUser && isSuccessUser) && <UserBody user={user}/>}
+                    {(!stateLoader.isLoader && isSuccessUser) && <UserBody user={user}/>}
                     {ErrorUser && <p className="user-container-username">Error: Anonymous</p>}
                 </div>
-                <UserPosts userId={state.userId} />
+                {!stateLoader.isLoader && <UserPosts userId={state.userId}/>}
             </div>
-
         </main>
     );
 }
