@@ -19,7 +19,7 @@ export const api = createApi({
             query: (postId: number) => `/posts/${postId}/comments/`
         }),
         authorizationUser: build.query({
-            query: () => `/users`
+            query: (userName:string) => `/users/?username=${userName}`
         }),
         getUserByUserId: build.query({
             query: (userId: number) => `/users/${userId}`

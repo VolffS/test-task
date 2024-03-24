@@ -1,0 +1,26 @@
+.form-main {
+  & > * {
+    padding-top: .3rem;
+  }
+}
+
+.form-footer {
+  display: flex;
+  flex-direction: row-reverse;
+  height: 2rem;
+  align-items: center;
+
+  & > * {
+    margin-left: 1rem;
+  }
+}
+
+.error-text {
+  color: red;
+}
+
+.form-footer__loader {
+  bottom: 3%;
+  left: 5%;
+  position: absolute;
+}

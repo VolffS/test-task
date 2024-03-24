@@ -15,15 +15,19 @@ const initialState: IAuthorizationUser = {
     isAuthorization: false
 }
 
-export const stateUserSlice = createSlice({
+export const stateAuthorizationUserSlice = createSlice({
     name: "stateUser",
     initialState: initialState,
     reducers: {
-        refreshUser: (state, {payload}: { payload: IAuthorizationUser }) => {
-            state.user = payload.user
-            state.isAuthorization = payload.isAuthorization
+        successAuthorizationUser: (state, {payload}: { payload: IUser[] }) => {
+            state.user = payload[0];
+            state.isAuthorization = true;
+        },
+        exitAuthorizationUser: (state) => {
+            state.user = initialUser;
+            state.isAuthorization = false;
         }
     }
 })
 
-export const {actions, reducer} = stateUserSlice
+export const {actions, reducer} = stateAuthorizationUserSlice

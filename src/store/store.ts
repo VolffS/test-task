@@ -1,9 +1,9 @@
 import {combineReducers, configureStore} from "@reduxjs/toolkit";
 import {api} from "@/api/api.ts";
-import {reducer as stateUserSliceReducer} from "@/store/state-loader.ts";
+import {reducer as stateAuthorizationUserSliceReducer} from "@/store/state-authorization-user-slice.ts";
 
 const reducers = combineReducers({
-    stateUserSlice: stateUserSliceReducer,
+    stateUserSlice: stateAuthorizationUserSliceReducer,
     [api.reducerPath]: api.reducer,
 })
 

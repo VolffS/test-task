@@ -8,11 +8,13 @@ import {Link} from "react-router-dom";
 import {HomeSvg} from "@/components/svg/home-svg.tsx";
 import {HumanSvg} from "@/components/svg/human-svg.tsx";
 import {AuthorizationUser} from "@/components/authorization-user/authorization-user.tsx";
+import {Button} from "@/components/ui/button.tsx";
+import {useActions} from "@/hooks/use-actions.ts";
 
 export const BurgerMenu = () => {
     const {user, isAuthorization}: IAuthorizationUser = useSelector<RootState>(state => state.stateUserSlice)
-    console.log(user)
-    console.log(isAuthorization)
+    const {exitAuthorizationUser} = useActions();
+
     return (
         <Sheet>
             <SheetTrigger className="hamburger">
@@ -22,7 +24,13 @@ export const BurgerMenu = () => {
             <SheetContent side={"left"} className=" w-[320px] sm:w-[540px]">
                 <SheetHeader>
                     <SheetTitle className="current-user">
-                        <AuthorizationUser isAuthorization={isAuthorization}/>
+                        {isAuthorization &&
+                            <Button className="current-user__authorization"
+                                    onClick={() => exitAuthorizationUser()}
+                            >
+                                Выйти
+                            </Button>}
+                        {!isAuthorization && < AuthorizationUser/>}
                         <AvatarUser/>
                         <p>{user.username}</p>
                         <p>{user.email}</p>
