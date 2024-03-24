@@ -4,10 +4,10 @@ import {useSelector} from "react-redux";
 import {RootState} from "@/store/store.ts";
 import {IAuthorizationUser} from "@/type/i-authorization-user.ts";
 import {AvatarUser} from "@/components/avatar-user/avatar-user.tsx";
-import {Button} from "@/components/ui/button.tsx";
 import {Link} from "react-router-dom";
 import {HomeSvg} from "@/components/svg/home-svg.tsx";
 import {HumanSvg} from "@/components/svg/human-svg.tsx";
+import {AuthorizationUser} from "@/components/authorization-user/authorization-user.tsx";
 
 export const BurgerMenu = () => {
     const {user, isAuthorization}: IAuthorizationUser = useSelector<RootState>(state => state.stateUserSlice)
@@ -22,9 +22,7 @@ export const BurgerMenu = () => {
             <SheetContent side={"left"} className=" w-[320px] sm:w-[540px]">
                 <SheetHeader>
                     <SheetTitle className="current-user">
-                        <Button className="current-user__authorization">
-                            {!isAuthorization ? "Выйти" : "Войти"}
-                        </Button>
+                        <AuthorizationUser isAuthorization={isAuthorization}/>
                         <AvatarUser/>
                         <p>{user.username}</p>
                         <p>{user.email}</p>
