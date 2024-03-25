@@ -9,6 +9,7 @@ import {useAuthorizationUserQuery} from "@/api/api.ts";
 import {useState} from "react";
 import {LoaderMini} from "@/components/loader/loaderMini.tsx";
 import {useActions} from "@/hooks/use-actions.ts";
+import {IFormUser} from "@/type/i-form-user.ts";
 
 const formSchema = z.object({
     userName: z.string().min(1, {
@@ -29,15 +30,16 @@ export const ProfileForm = () => {
             email: "",
         },
     })
-    const [formUser, setFormUser] = useState("");
-    const {data: user, isError, isFetching} = useAuthorizationUserQuery(formUser);
+    const [formUser, setFormUser] = useState<IFormUser | undefined>();
+    const {data: user, isError, isFetching} = useAuthorizationUserQuery(formUser, {
+        skip: formUser === undefined
+    });
     const {successAuthorizationUser} = useActions();
-
     function onSubmit(values: z.infer<typeof formSchema>) {
-        setFormUser(values.userName)
+        setFormUser(values)
     }
 
-    if (!isError && !isFetching && user.length !== 0) {
+    if (!isError && user !== undefined && user.length !== 0) {
         successAuthorizationUser(user)
     }
 
@@ -56,7 +58,6 @@ export const ProfileForm = () => {
                                 </FormControl>
                                 <FormMessage/>
                             </FormItem>
-
                         )}
                     />
                     <FormField
@@ -70,17 +71,15 @@ export const ProfileForm = () => {
                                 </FormControl>
                                 <FormMessage/>
                             </FormItem>
-
                         )}
                     />
                 </div>
                 <div className="form-footer">
                     <Button type="submit">Submit</Button>
                     {isFetching && <div className="form-footer__loader"><LoaderMini/></div>}
-                    {(!isError && !isFetching && formUser !== "" && user.length === 0) &&
+                    {(!isError && !isFetching && formUser !== undefined && user.length === 0) &&
                         <p className="error-text">Не верный логин или пароль</p>}
-                    {isError && <p className="error-text">Произошла непредвиденная ошибка</p>}
-
+                    {isError && formUser !== undefined && <p className="error-text">Произошла непредвиденная ошибка</p>}
                 </div>
             </form>
         </Form>

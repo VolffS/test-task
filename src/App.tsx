@@ -6,6 +6,7 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import ErrorRouter from "@/components/error/error-router.tsx";
 import {User} from "@/components/user/user.tsx";
 import {PostList} from "@/components/post-list/post-list.tsx";
+import {Author} from "@/components/author/author.tsx";
 
 function App() {
     const router = createBrowserRouter([
@@ -22,36 +23,23 @@ function App() {
                     path: "/user/:userId",
                     element: <User/>,
                 },
+                {
+                    path: "/about-me/:userId",
+                    element: <User/>,
+                },
+                {
+                    path: "/author",
+                    element: <Author/>,
+                },
             ]
-        },
-        // {
-        //     path: "/",
-        //     element: <PostList/>,
-        //     errorElement: <ErrorRouter/>,
-        // },
-        // {
-        //     path: "/about-me",
-        //     element: <AboutMe />
-        // },
-        // {
-        //     path: "/about-user",
-        //     element: <AboutUser/>
-        // },
-
-
-        // {
-        //     path: "/post/:postId",
-        //     element: <Post/>
-        // },
-
+        }
     ]);
-  return (
-    <>
+
+    return (
         <Provider store={store}>
             <RouterProvider router={router}/>
         </Provider>
-    </>
-  )
+    )
 }
 
 export default App

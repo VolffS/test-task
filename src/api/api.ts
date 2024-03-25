@@ -1,4 +1,5 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
+import {IFormUser} from "@/type/i-form-user.ts";
 
 const baseUrl: string = 'https://jsonplaceholder.typicode.com';
 
@@ -19,7 +20,7 @@ export const api = createApi({
             query: (postId: number) => `/posts/${postId}/comments/`
         }),
         authorizationUser: build.query({
-            query: (userName:string) => `/users/?username=${userName}`
+            query: ({userName, email}:IFormUser) => `/users/?username=${userName}&email=${email}`
         }),
         getUserByUserId: build.query({
             query: (userId: number) => `/users/${userId}`

@@ -1,5 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar.tsx"
-import avatarGif from '@/assets/nightcrawler-gyllenhaal.gif'
+import avatarGif from '@/assets/img/nightcrawler-gyllenhaal.gif'
 import './avatar-user.scss'
 import {Link} from "react-router-dom";
 export const AvatarUserMini = ({userId}:{userId:number}) => {

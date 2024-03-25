@@ -1,4 +1,3 @@
-import './authorization-user.scss'
 import {
     Dialog,
     DialogContent,
@@ -11,7 +10,6 @@ import {Button} from "@/components/ui/button.tsx";
 import {ProfileForm} from "@/components/form-authorization/form-authorization.tsx";
 
 export const AuthorizationUser = () => {
-
 
     return (
         <Dialog>

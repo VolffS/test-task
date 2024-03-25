@@ -14,8 +14,6 @@ export const PostList = () => {
         [posts]
     );
 
-
-
     return (
         <main className="container">
             <ul>
@@ -27,6 +25,5 @@ export const PostList = () => {
                 {error && <li className="post">Ошибка подключения</li>}
             </ul>
         </main>
-
     );
 }

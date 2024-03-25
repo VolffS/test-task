@@ -1,0 +1,88 @@
+.about-me__photo {
+  margin: 1rem;
+  position: relative;
+
+  > div {
+    display: grid;
+    place-items: center;
+  }
+
+  .about-me__photo__ellipse {
+    max-width: 33rem;
+    max-height: 33rem;
+    background: #2D2D2D;
+    clip-path: circle();
+
+    .about-me__photo__img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .about-me__photo__ellipse-decoration {
+    position: absolute;
+    box-shadow: 0 .2rem .4rem rgb(0, 0, 0, 0.73);
+    border-radius: 100%;
+  }
+
+
+  .decor1 {
+    width: 30%;
+    height: 30%;
+    top: 55%;
+    background: #333;
+
+    .decoration-img {
+      max-width: 80%;
+    }
+  }
+
+  .decor2 {
+    width: 20%;
+    height: 20%;
+    top: 65%;
+    right: 5%;
+    background: #333;
+
+    .decoration-img {
+      max-width: 60%;
+    }
+  }
+
+  .decor3 {
+    width: 25%;
+    height: 25%;
+    top: 8%;
+    right: 2%;
+    background: #333;
+
+    .decoration-img {
+      width: 100%;
+      max-width: 80%;
+    }
+  }
+
+  .decor4 {
+    width: 1.4rem;
+    height: 1.4rem;
+    top: 5%;
+    left: 2%;
+    background: #4F4F4F;
+  }
+
+  .decor5 {
+    width: 1.9rem;
+    height: 1.9rem;
+    top: -6%;
+    right: -2%;
+    background: #343434;
+  }
+
+  .decor6 {
+    width: 0.6rem;
+    height: 0.6rem;
+    top: 55%;
+    right: -5%;
+    background: #BDBDBD;
+  }
+}

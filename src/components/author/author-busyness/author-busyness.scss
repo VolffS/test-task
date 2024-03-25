@@ -1,0 +1,57 @@
+$--toxic: #70FF00;
+
+.about-me__busyness {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 2rem .5rem 2rem;
+
+  .about-me__busyness__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 35.6rem;
+    width: 100%;
+    color: white;
+    font-family: Courier Prime, sans-serif;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    text-decoration: none;
+    border-radius: 0.4rem;
+    background: #4F4F4F;
+    box-shadow: 0 4px 10px 5px rgba(0, 0, 0, 0.25);
+    padding: 1rem 2rem;
+    margin-bottom: 0.2rem;
+
+    & > :last-child {
+      margin: 0;
+    }
+
+
+  }
+
+  .busyness {
+    flex-grow: 1;
+    word-wrap: anywhere;
+  }
+
+  img {
+    max-width: 100%;
+  }
+}
+
+.busyness__link {
+  color: $--toxic;
+  font-size: 1.5rem;
+  padding-top: 1.1rem;
+  text-decoration: underline $--toxic;
+
+  &:hover {
+    filter: invert(15%);
+  }
+
+  &:active {
+    filter: invert(25%);
+  }
+}

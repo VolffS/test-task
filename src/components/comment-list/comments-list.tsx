@@ -28,4 +28,3 @@ export const CommentsList = ({idPost}: { idPost: number }) => {
         </div>
     );
 }
-// loader нужен
