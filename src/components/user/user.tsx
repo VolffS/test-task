@@ -21,7 +21,6 @@ export const User = () => {
         () => user !== undefined ? user : null,
         [user]
     );
-    const stateLoader: DeferredLoader = useDeferredLoader()
 
     if (isLoadingUser)
         return <LoaderAllSpace/>
@@ -45,7 +44,7 @@ export const User = () => {
                 <AvatarUser/>
                 {!isLoadingUser && <UserBody user={visibleUser}/>}
             </div>
-            {!stateLoader.isLoader && <UserPosts userId={state.userId}/>}
+            {!isLoadingUser && <UserPosts userId={state.userId}/>}
         </div>
     );
 }
