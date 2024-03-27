@@ -78,7 +78,7 @@ export const ProfileForm = () => {
                     <Button type="submit">Submit</Button>
                     {isFetching && <div className="form-footer__loader"><LoaderMini/></div>}
                     {(!isError && !isFetching && formUser !== undefined) &&
-                        <p className="error-text">Не верный логин или пароль</p>}
+                        <p className="error-text">Не верный логин или email</p>}
                     {isError && formUser !== undefined && <p className="error-text">Произошла непредвиденная ошибка</p>}
                 </div>
             </form>
