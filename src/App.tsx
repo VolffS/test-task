@@ -7,6 +7,7 @@ import ErrorRouter from "@/components/error/error-router.tsx";
 import {User} from "@/components/user/user.tsx";
 import {PostList} from "@/components/post-list/post-list.tsx";
 import {Author} from "@/components/author/author.tsx";
+import {MainContent} from "@/components/main-content/main-content.tsx";
 
 function App() {
     const router = createBrowserRouter([
@@ -17,15 +18,15 @@ function App() {
             children: [
                 {
                     path: "/",
-                    element: <PostList/>,
+                    element: <MainContent Children={PostList}/>,
                 },
                 {
                     path: "/user/:userId",
-                    element: <User/>,
+                    element: <MainContent Children={User}/>,
                 },
                 {
                     path: "/about-me/:userId",
-                    element: <User/>,
+                    element: <MainContent Children={User}/>,
                 },
                 {
                     path: "/author",

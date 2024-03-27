@@ -1,11 +1,15 @@
-import {IAuthorizationUser} from "@/type/i-authorization-user.ts";
-import {useActions} from "@/hooks/use-actions.ts";
+import {useAuthorizationActions} from "@/hooks/use-authorization-actions.ts";
 import {Button} from "@/components/ui/button.tsx";
 import {AuthorizationUser} from "@/components/authorization-user/authorization-user.tsx";
 import {AvatarUser} from "@/components/avatar-user/avatar-user.tsx";
+import {AuthorizedUser} from "@/type/authorized-user.ts";
+import {useSelector} from "react-redux";
+import {RootState} from "@/store/store.ts";
+import {selectAuthorizationUser} from "@/store/state-authorization-user-slice.ts";
 
-export const HamburgerUser = ({user, isAuthorization}: IAuthorizationUser) => {
-    const {exitAuthorizationUser} = useActions();
+export const HamburgerUser = () => {
+    const {user, isAuthorization}: AuthorizedUser = useSelector<RootState>(selectAuthorizationUser)
+    const {exitAuthorizationUser} = useAuthorizationActions();
 
     return (
         <>
@@ -16,8 +20,8 @@ export const HamburgerUser = ({user, isAuthorization}: IAuthorizationUser) => {
                 </Button>}
             {!isAuthorization && < AuthorizationUser/>}
             <AvatarUser/>
-            <p>{user.username}</p>
-            <p>{user.email}</p>
+            <p>{isAuthorization ?user.username :"Anonymous"}</p>
+            <p>{isAuthorization ?user.email :"Anonymous@ano.mous"}</p>
         </>
     );
 }

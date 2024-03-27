@@ -1,10 +1,8 @@
 import './user-posts.scss'
-import {IPost} from "@/type/i-post.ts";
+import {PostInfo} from "@/type/post-info.ts";
 import {Post} from "@/components/post/post.tsx";
 import {useGetPostsByUserIdQuery} from "@/api/api.ts";
 import {useMemo} from "react";
-import {IDeferredLoader} from "@/type/i-deferred-loader.ts";
-import {useDeferredLoader} from "@/hooks/use-deferred-loader.ts";
 import {LoaderMini} from "@/components/loader/loaderMini.tsx";
 
 export const UserPosts = ({userId}:{userId: number}) => {
@@ -13,23 +11,26 @@ export const UserPosts = ({userId}:{userId: number}) => {
         isSuccess: isSuccessPost,
         error: ErrorPost
     } = useGetPostsByUserIdQuery(userId);
-    const stateLoader: IDeferredLoader = useDeferredLoader()
-
-    const visibleTask = useMemo(
-        () => posts,
+    const visiblePost = useMemo(
+        () => posts !== undefined ? posts : [],
         [posts]
     );
 
-  return (
-      <div className="user-post">
-          <p className="user-post__title">Посты:</p>
+    if (isLoadingPost)
+        return <LoaderMini/>
+
+    if (ErrorPost)
+        return <p className="user-container-username">Что-то пошло не так</p>
+
+    if ((isSuccessPost && visiblePost.length === 0))
+        return <p className="user-container-username">Ничего не найдено</p>
+
+    return (
+        <div className="user-post">
+            <p className="user-post__title">Посты:</p>
           <ul>
-              {stateLoader.isLoader && <LoaderMini/>}
-              {!isLoadingPost && stateLoader.shutdownLoader()}
-              {(!stateLoader.isLoader && isSuccessPost) && visibleTask.map((post: IPost) => <Post key={post.id} post={post}/>)}
-              {(isSuccessPost && visibleTask.length === 0) && <p>Ничего не найдено</p>}
+              {!isLoadingPost && visiblePost.map((post: PostInfo) => <Post key={post.id} post={post}/>)}
           </ul>
-          {ErrorPost && <p className="user-container-username">Ничего не найдено</p>}
       </div>
   );
 }

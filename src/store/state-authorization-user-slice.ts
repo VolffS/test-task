@@ -1,16 +1,12 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {IUser} from "@/type/i-user.ts";
-import {IAuthorizationUser} from "@/type/i-authorization-user.ts";
+import {User} from "@/type/user.ts";
+import {AuthorizedUser} from "@/type/authorized-user.ts";
+import {useSelector} from "react-redux";
+import {RootState} from "@/store/store.ts";
 
-const initialUser: IUser = {
-    "id": 0,
-    "name": "",
-    "username": "Anonymous",
-    "email": "Anonymous@ano.mous",
-    "phone": "",
-}
+const initialUser: User = null
 
-const initialState: IAuthorizationUser = {
+const initialState: AuthorizedUser = {
     user: initialUser,
     isAuthorization: false
 }
@@ -19,7 +15,7 @@ export const stateAuthorizationUserSlice = createSlice({
     name: "stateUser",
     initialState: initialState,
     reducers: {
-        successAuthorizationUser: (state, {payload}: { payload: IUser[] }) => {
+        successAuthorizationUser: (state, {payload}: { payload: User[] }) => {
             state.user = payload[0];
             state.isAuthorization = true;
         },
@@ -30,4 +26,6 @@ export const stateAuthorizationUserSlice = createSlice({
     }
 })
 
-export const {actions, reducer} = stateAuthorizationUserSlice
+export const {actions, reducer} = stateAuthorizationUserSlice;
+
+export const selectAuthorizationUser = (state: RootState) => state.stateUserSlice;

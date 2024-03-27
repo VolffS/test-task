@@ -1,7 +1,17 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
-import {IFormUser} from "@/type/i-form-user.ts";
-
+import {FormUser} from "@/type/form-user.ts";
+import {PostInfo} from "@/type/post-info.ts";
+import {Comment} from "@/type/comment.ts";
+import {User} from "@/type/user.ts";
+import {BaseQueryResult} from "@reduxjs/toolkit/dist/query/baseQueryTypes";
 const baseUrl: string = 'https://jsonplaceholder.typicode.com';
+
+const getResponseWithTimeout = <Result>(response: BaseQueryResult<Result>): Promise<Result> | Result =>
+    new Promise(resolve => {
+        setTimeout(() => {
+            resolve(response)
+        }, 500)
+    })
 
 export const api = createApi({
     reducerPath: "api",
@@ -10,20 +20,25 @@ export const api = createApi({
         baseUrl: baseUrl,
     }),
     endpoints: (build) => ({
-        getPosts: build.query({
-            query: () => '/posts'
+        getPosts: build.query<PostInfo[], undefined>({
+            query: () => '/posts',
+            transformResponse: getResponseWithTimeout
         }),
-        getPostsByUserId: build.query({
-            query: (userId: number) => `/posts/?userId=${userId}`
+        getPostsByUserId: build.query<PostInfo[], number>({
+            query: (userId: number) => `/posts/?userId=${userId}`,
+            transformResponse: getResponseWithTimeout
         }),
-        getCommentsByPostId: build.query({
-            query: (postId: number) => `/posts/${postId}/comments/`
+        getCommentsByPostId: build.query<Comment[], number>({
+            query: (postId: number) => `/posts/${postId}/comments`,
+            transformResponse: getResponseWithTimeout
         }),
-        authorizationUser: build.query({
-            query: ({userName, email}:IFormUser) => `/users/?username=${userName}&email=${email}`
+        authorizationUser: build.query<User, FormUser>({
+            query: ({userName, email}: FormUser) => `/users/?username=${userName}&email=${email}`,
+            transformResponse: getResponseWithTimeout
         }),
-        getUserByUserId: build.query({
-            query: (userId: number) => `/users/${userId}`
+        getUserByUserId: build.query<User, number>({
+            query: (userId: number) => `/users/${userId}`,
+            transformResponse: getResponseWithTimeout
         }),
     })
 })

@@ -1,6 +1,6 @@
 import './commentary.scss'
-import {IComment} from "@/type/i-comment.ts";
-export const Commentary = ({comment}: { comment: IComment }) => {
+import {Comment} from "@/type/comment.ts";
+export const Commentary = ({comment}: { comment: Comment }) => {
 
     return (
         <li className="comment">

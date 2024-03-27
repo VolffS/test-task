@@ -1,10 +1,9 @@
 import './comment-list.scss'
-import {IComment} from "@/type/i-comment.ts";
+import {Comment} from "@/type/comment.ts";
 import {Commentary} from "@/components/comment/commentary.tsx";
 import {useGetCommentsByPostIdQuery} from "@/api/api.ts";
-import {IDeferredLoader} from "@/type/i-deferred-loader.ts";
-import {useDeferredLoader} from "@/hooks/use-deferred-loader.ts";
 import {LoaderMini} from "@/components/loader/loaderMini.tsx";
+import {useMemo} from "react";
 
 export const CommentsList = ({idPost}: { idPost: number }) => {
     const {
@@ -13,17 +12,25 @@ export const CommentsList = ({idPost}: { idPost: number }) => {
         isSuccess,
         error
     } = useGetCommentsByPostIdQuery(idPost);
-    const stateLoader: IDeferredLoader = useDeferredLoader()
+    const visibleComments = useMemo(
+        () => comments !== undefined ? comments : [],
+        [comments]
+    );
+
+    if (isLoading)
+        return <LoaderMini/>
+
+    if (isSuccess && comments.length === 0)
+        return <div className="comments-container">Ничего не найдено</div>
+
+    if (error)
+        return <div className="comments-container">Что-то пошло не так</div>
 
     return (
         <div className="comments-container">
             <ul className="comments-list">
-                {stateLoader.isLoader && <LoaderMini/>}
-                {!isLoading && stateLoader.shutdownLoader()}
-                {(!stateLoader.isLoader && isSuccess) && comments.map((comment: IComment) => <Commentary key={comment.id}
-                                                                                                         comment={comment}/>)}
-                {(isSuccess && comments.length === 0) && <li className="comment">Ничего не найдено</li>}
-                {error && <li className="comment">Что-то пошло не так</li>}
+                {!isLoading && visibleComments.map((comment: Comment) => <Commentary key={comment.id}
+                                                                                                        comment={comment}/>)}
             </ul>
         </div>
     );

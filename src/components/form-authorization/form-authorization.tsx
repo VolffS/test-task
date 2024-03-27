@@ -8,8 +8,8 @@ import {Input} from "@/components/ui/input"
 import {useAuthorizationUserQuery} from "@/api/api.ts";
 import {useState} from "react";
 import {LoaderMini} from "@/components/loader/loaderMini.tsx";
-import {useActions} from "@/hooks/use-actions.ts";
-import {IFormUser} from "@/type/i-form-user.ts";
+import {useAuthorizationActions} from "@/hooks/use-authorization-actions.ts";
+import {FormUser} from "@/type/form-user.ts";
 
 const formSchema = z.object({
     userName: z.string().min(1, {
@@ -30,11 +30,11 @@ export const ProfileForm = () => {
             email: "",
         },
     })
-    const [formUser, setFormUser] = useState<IFormUser | undefined>();
+    const [formUser, setFormUser] = useState<FormUser | undefined>();
     const {data: user, isError, isFetching} = useAuthorizationUserQuery(formUser, {
         skip: formUser === undefined
     });
-    const {successAuthorizationUser} = useActions();
+    const {successAuthorizationUser} = useAuthorizationActions();
     function onSubmit(values: z.infer<typeof formSchema>) {
         setFormUser(values)
     }
@@ -77,7 +77,7 @@ export const ProfileForm = () => {
                 <div className="form-footer">
                     <Button type="submit">Submit</Button>
                     {isFetching && <div className="form-footer__loader"><LoaderMini/></div>}
-                    {(!isError && !isFetching && formUser !== undefined && user.length === 0) &&
+                    {(!isError && !isFetching && formUser !== undefined) &&
                         <p className="error-text">Не верный логин или пароль</p>}
                     {isError && formUser !== undefined && <p className="error-text">Произошла непредвиденная ошибка</p>}
                 </div>

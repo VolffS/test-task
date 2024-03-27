@@ -1,4 +1,4 @@
-export interface IDeferredLoader {
+export interface DeferredLoader {
     isLoader: boolean,
     shutdownLoader: () => void
 }

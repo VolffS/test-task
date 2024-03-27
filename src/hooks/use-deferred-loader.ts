@@ -1,7 +1,7 @@
 import {useState} from "react";
-import {IDeferredLoader} from "@/type/i-deferred-loader.ts";
+import {DeferredLoader} from "@/type/deferred-loader.ts";
 
-export const useDeferredLoader = (): IDeferredLoader => {
+export const useDeferredLoader = (): DeferredLoader => {
     const [isLoader, setIsLoader] = useState<boolean>(true);
 
     const shutdownLoader = (): void => {

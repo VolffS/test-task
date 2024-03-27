@@ -1,6 +1,6 @@
-import {IUser} from "@/type/i-user.ts";
+import {User} from "@/type/user.ts";
 import './user-body.scss'
-export const UserBody = ({user}: { user: IUser }) => {
+export const UserBody = ({user}: { user: User }) => {
     return (
         <div className="user-body">
             <p className="user-container-username">Имя профиля: {user.username}</p>
