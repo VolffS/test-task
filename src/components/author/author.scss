@@ -1,0 +1,45 @@
+.main-about-me {
+  overflow-x: hidden;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+}
+
+.theme__header {
+  font-size: 3rem;
+  color: #70FF00;
+
+  &::after {
+    color: #E0E0E0;
+    content: "( )";
+  }
+}
+
+.about-me {
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  align-self: center;
+
+  > .about-me__block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+    @media screen and (max-width: 1220px) {
+      justify-content: center;
+    }
+  }
+}
+
+
+
+
+
+
+
+
