@@ -6,8 +6,6 @@ import {UserBody} from "@/components/user-body/user-body.tsx";
 import {Button} from "@/components/ui/button.tsx";
 import {HomeSvg} from "@/components/svg/home-svg.tsx";
 import {UserPosts} from "@/components/user-posts/user-posts.tsx";
-import {DeferredLoader} from "@/type/deferred-loader.ts";
-import {useDeferredLoader} from "@/hooks/use-deferred-loader.ts";
 import {LoaderAllSpace} from "@/components/loader/loaderAllSpace.tsx";
 import {useMemo} from "react";
 

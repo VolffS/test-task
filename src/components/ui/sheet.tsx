@@ -8,7 +8,6 @@ import { cn } from "@/lib/utils"
 const Sheet = SheetPrimitive.Root
 
 const SheetTrigger = SheetPrimitive.Trigger
-const SHEET_SIDES = ["top", "right", "bottom", "left"] as const
 const SheetClose = SheetPrimitive.Close
 
 const SheetPortal = SheetPrimitive.Portal

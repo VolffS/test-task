@@ -1,7 +1,6 @@
 import {Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger,} from "@/components/ui/sheet"
 import './hamburger.scss'
 import {useSelector} from "react-redux";
-import {RootState} from "@/store/store.ts";
 import {AuthorizedUser} from "@/type/authorized-user.ts";
 import {Link} from "react-router-dom";
 import {HomeSvg} from "@/components/svg/home-svg.tsx";
@@ -11,7 +10,7 @@ import {HamburgerUser} from "@/components/hamburger-user/hamburger-user.tsx";
 import {selectAuthorizationUser} from "@/store/state-authorization-user-slice.ts";
 
 export const BurgerMenu = () => {
-    const {user, isAuthorization}: AuthorizedUser = useSelector<RootState>(selectAuthorizationUser)
+    const {user, isAuthorization}: AuthorizedUser = useSelector(selectAuthorizationUser)
     const classLink = `hamburger-link ${isAuthorization ? "link-active" : "link-disabled"}`
 
     return (

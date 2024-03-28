@@ -4,11 +4,10 @@ import {AuthorizationUser} from "@/components/authorization-user/authorization-u
 import {AvatarUser} from "@/components/avatar-user/avatar-user.tsx";
 import {AuthorizedUser} from "@/type/authorized-user.ts";
 import {useSelector} from "react-redux";
-import {RootState} from "@/store/store.ts";
 import {selectAuthorizationUser} from "@/store/state-authorization-user-slice.ts";
 
 export const HamburgerUser = () => {
-    const {user, isAuthorization}: AuthorizedUser = useSelector<RootState>(selectAuthorizationUser)
+    const {user, isAuthorization}: AuthorizedUser = useSelector(selectAuthorizationUser)
     const {exitAuthorizationUser} = useAuthorizationActions();
 
     return (

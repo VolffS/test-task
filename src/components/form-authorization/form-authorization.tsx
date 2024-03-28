@@ -39,7 +39,7 @@ export const ProfileForm = () => {
         setFormUser(values)
     }
 
-    if (!isError && user !== undefined && user.length !== 0) {
+    if (!isError && user !== undefined) {
         successAuthorizationUser(user)
     }
 

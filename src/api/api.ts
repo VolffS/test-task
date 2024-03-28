@@ -32,7 +32,7 @@ export const api = createApi({
             query: (postId: number) => `/posts/${postId}/comments`,
             transformResponse: getResponseWithTimeout
         }),
-        authorizationUser: build.query<User, FormUser>({
+        authorizationUser: build.query<User[], FormUser>({
             query: ({userName, email}: FormUser) => `/users/?username=${userName}&email=${email}`,
             transformResponse: getResponseWithTimeout
         }),

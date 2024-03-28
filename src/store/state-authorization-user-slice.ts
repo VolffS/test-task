@@ -1,10 +1,15 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {User} from "@/type/user.ts";
 import {AuthorizedUser} from "@/type/authorized-user.ts";
-import {useSelector} from "react-redux";
 import {RootState} from "@/store/store.ts";
 
-const initialUser: User = null
+const initialUser: User = {
+    id: 0,
+    name: "",
+    username: "",
+    email: "",
+    phone: "",
+}
 
 const initialState: AuthorizedUser = {
     user: initialUser,
