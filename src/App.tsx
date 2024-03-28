@@ -12,24 +12,24 @@ import {MainContent} from "@/components/main-content/main-content.tsx";
 function App() {
     const router = createBrowserRouter([
         {
-            path: "/",
+            path: "test-task/",
             element: <Header/>,
             errorElement: <ErrorRouter/>,
             children: [
                 {
-                    path: "/",
+                    path: "test-task/",
                     element: <MainContent Children={PostList}/>,
                 },
                 {
-                    path: "/user/:userId",
+                    path: "test-task/user/:userId",
                     element: <MainContent Children={User}/>,
                 },
                 {
-                    path: "/about-me/:userId",
+                    path: "test-task/about-me/:userId",
                     element: <MainContent Children={User}/>,
                 },
                 {
-                    path: "/author",
+                    path: "test-task/author",
                     element: <Author/>,
                 },
             ]

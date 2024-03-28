@@ -1,6 +1,7 @@
 import './header.scss'
 import {BurgerMenu} from "@/components/burger-menu/burger-menu.tsx";
 import {Link, Outlet} from "react-router-dom";
+import githubSvg from '@/assets/img/github.svg'
 
 
 export default function Header() {
@@ -16,7 +17,7 @@ export default function Header() {
                                 <p className="navigation__link__description">Ответ на смысл жизни</p>
                             </a>
                             <a href="https://github.com/VolffS" className="navigation__link">
-                                <img src="/github.svg" alt="" className="navigation__link__img"/>
+                                <img src={githubSvg} alt="" className="navigation__link__img"/>
                                 <p className="navigation__link__description">Github</p>
                             </a>
                         </div>
